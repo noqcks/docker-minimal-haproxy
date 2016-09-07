@@ -10,7 +10,6 @@ defaults
   timeout queue  60s
   option httpclose
   option abortonclose
-  balance roundrobin
   option forwardfor
   retries 2
   errorfile 400 /usr/local/etc/haproxy/errors/400.http
@@ -24,12 +23,12 @@ defaults
 
 frontend default
   bind *:80
-  monitor-uri /ping
-  default_backend default
+  default_backend servers
 
 
-backend default
+backend servers
   mode http
+  balance roundrobin
 {{ range $server := split .Env.BACKENDS "," }}
-  server {{ . }} {{ . }}
+  server {{ . }} {{ . }} check fall 3 rise 2
 {{ end }}
