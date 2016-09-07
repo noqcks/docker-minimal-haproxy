@@ -12,6 +12,6 @@ Run the following command:
 
 
 ```
-docker run -p 80:80 -e BACKENDS=test-1.com,test-2.com noqcks/haproxy
+docker run -d --name haproxy -p 80:80 -e BACKENDS=test-1.com,test-2.com noqcks/haproxy
 ```
 

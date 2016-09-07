@@ -7,4 +7,4 @@ RUN wget --quiet https://github.com/jwilder/dockerize/releases/download/v0.2.0/d
 
 COPY haproxy.tmpl /usr/local/etc/haproxy/haproxy.tmpl
 
-CMD dockerize -template /etc/dockerize/haproxy.tmpl:/usr/local/etc/haproxy/haproxy.cfg haproxy
+CMD dockerize -template /usr/local/etc/haproxy/haproxy.tmpl:/usr/local/etc/haproxy/haproxy.cfg haproxy -f /usr/local/etc/haproxy/haproxy.cfg
